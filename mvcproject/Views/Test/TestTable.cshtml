@@ -1,0 +1,85 @@
+﻿@model List<mvcproject.Dto.TestsDto>
+
+
+<head>
+    <style>
+        .table {
+            border;
+            1px solid #0c1e35;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<div>
+
+    <table class="table" style="overflow: scroll;">
+        <thead>
+            <tr>
+                <td style="width: 100px">Id</td>
+                <td style="width: 100px">Questions</td>
+                <td style="width: 300px">Correct</td>
+                <td style="width: 300px">Incorrect</td>
+                <td style="width: 300px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Test</h1>
+
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="@Url.Action("AddTest", "Test")">
+                                <div class="modal-content " style="width: 500px;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Test</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input name="Queshioquestion" type="text" class="form-control w-100 my-3" required placeholder="Questions" />
+                                        <input name="correct" class="form-control w-100 my-3" required placeholder="Correct" />
+                                        <input name="Incorrect[0]" class="form-control w-100 my-3" required placeholder="Incorrect 1" />
+                                        <input name="Incorrect[1]" class="form-control w-100 my-3" required placeholder="Incorrect 2" />
+                                        <input name="Incorrect[2]" class="form-control w-100 my-3" required placeholder="Incorrect 3" />
+                                        <input type="number" name="CourseId" class="form-control w-100 my-3" required placeholder="Course Id" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button asp-action="AddTest" asp-controller="Test" type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var iteam in Model)
+            {
+                <tr>
+                    <th><input style="width: 60px !important;" readonly value="@iteam.Id" class="form-control w-100" /></th>
+                    <th><input readonly style="width: 108px;" value="@iteam.Queshioquestion" class="form-control" /></th>
+                    <th>
+                        <div style="width: 200px; overflow:auto;" readonly value="@iteam.correct" class="form-control">
+                            @iteam.correct
+                        </div>
+                    </th>
+                    <th>
+                        <div readonly value="@iteam.incorrect" class="form-control" style="width: 200px; overflow:auto;">
+                            @foreach (var i in @iteam.incorrect)
+                            {
+                                <p>@i</p><br/>
+                            }
+                        </div>
+
+                    </th>
+
+                    <th>
+                        <form action="@Url.Action("GetByid", "Test")"><input type="hidden" name="id" value="@iteam.Id" /><button asp-action="GetByid" asp-controller="Test" type="submit" class="btn btn-outline-success my-3">Edit</button></form>
+                        <form action="@Url.Action("DeleteTets", "Test")"><input type="hidden" name="id" value="@iteam.Id" /> <button class="btn btn-outline-danger" asp-action="DeleteTets" asp-controller="Test">Delete Test</button></form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,25 @@
+﻿@model mvcproject.Enitiy.Course
+
+
+
+<head>
+
+</head>
+
+<div style="width: 600px; height:fit-content; margin:auto; background: #0c1e35 ; box-shadow: 0 0 5px black; border-radius: 20px; padding: 100px;">
+    <form asp-action="UpdateCourse" asp-controller="Course">
+        <input name="id" value="@Model.Id" type="hidden"/>
+        <input name="name" value="@Model.Name" type="text" class="form-control mt-3" placeholder="Name Course" />
+        <input class="form-control mt-3" name="url" value="@Model.Url" placeholder="Url Photo"  />
+        <input class="form-control mt-3" name="description" value="@Model.Description" placeholder="Description" />
+        <input class="form-control mt-3" name="price" value="@Model.Price" type="number" placeholder="Price" />
+        <div class="d-flex justify-content-between align-items-center">
+            <button asp-action="UpdateCourse" asp-controller="Course" class="btn btn-outline-warning mt-4">Update User</button>
+        </div>
+    </form>
+    <form action="@Url.Action("GetCourse", "Course")">
+        <button asp-action="GetCourse" asp-controller="Course" type="submit" class="btn btn-outline-primary mt-4">Cancel</button>
+    </form>
+</div>
+
+

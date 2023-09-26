@@ -1,0 +1,79 @@
+﻿@model List<mvcproject.Dto.HomeWorkDto>
+
+
+<head>
+    <style>
+        .table {
+            border;
+            1px solid #0c1e35;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<div>
+
+    <table class="table" style="overflow: scroll;">
+        <thead>
+            <tr>
+                <td style="width: 100px">Id</td>
+                <td style="width: 100px">Name</td>
+                <td style="width: 300px">Title</td>
+                <td style="width: 300px">Image</td>
+                <td style="width: 250px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Home Work</h1>
+
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="@Url.Action("AddHomewWork", "HomeWork")">
+                                <div class="modal-content " style="width: 500px;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Home Work</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input name="title" type="text" class="form-control w-100 my-3" required placeholder="Title" />
+                                        <input name="name" class="form-control w-100 my-3" required placeholder="Name" />
+                                        <input name="img" class="form-control w-100 my-3" required placeholder="Image" />
+
+                                        <input name="TaskId" class="form-control w-100 my-3" required placeholder="Task Id" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button asp-action="AddHomewWork" asp-controller="HomeWork" type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var iteam in Model)
+            {
+                <tr>
+                    <th><input style="width: 60px !;" readonly value="@iteam.Id" class="form-control w-100" /></th>
+                    <th><input readonly style="width: 108px;" value="@iteam.Name" class="form-control" /></th>
+
+                    <th>
+                        <div readonly value="@iteam.Title" class="form-control" style="width: 200px; overflow:auto;">
+                            @iteam.Title
+                        </div>
+
+                    </th>
+
+                    <th>
+                        <img readonly style="width: 200px; object-fit: contain;" src="@iteam.Img" value="@iteam.Img" class="form-control w-100" />
+                    </th>
+                    <th>
+                        <form action="@Url.Action("GetByid", "HomeWork")"><input type="hidden" name="id" value="@iteam.Id" /><button asp-action="GetByid" asp-controller="HomeWork" type="submit" class="btn btn-outline-success my-3">Edit</button></form>
+                        <form action="@Url.Action("DeleteHomeWork", "HomeWork")"><input type="hidden" name="id" value="@iteam.Id" /> <button class="btn btn-outline-danger" asp-action="DeleteHomeWork" asp-controller="HomeWork">Delete Home Work</button></form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

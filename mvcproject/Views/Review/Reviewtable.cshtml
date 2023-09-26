@@ -1,0 +1,85 @@
+﻿@model List<mvcproject.Dto.ReviewDto>
+
+
+<head>
+    <style>
+        .table {
+            border;
+            1px solid #0c1e35;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<div>
+
+    <table class="table" style="overflow: scroll;">
+        <thead>
+            <tr>
+                <td style="width: 100px">Id</td>
+                <td style="width: 100px">Comment</td>
+                <td style="width: 300px">Course Info</td>
+                <td style="width: 300px">Course Name</td>
+                <td style="width: 250px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Review</h1>
+
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="@Url.Action("AddReview", "Review")">
+                                <div class="modal-content " style="width: 500px;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Review</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input name="comment" type="text" class="form-control w-100 my-3" required placeholder="Comment" />
+                                        <input name="Course_info" class="form-control w-100 my-3" required placeholder="Course info" />
+                                        <input name="Course_name" class="form-control w-100 my-3" required placeholder="Course name " />
+                                        <input type="number" name="TaskId" class="form-control w-100 my-3" required placeholder="Task Id" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button asp-action="AddReview" asp-controller="Review" type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var iteam in Model)
+            {
+                <tr>
+                    <th><input style="width: 60px !;" readonly value="@iteam.Id" class="form-control w-100" /></th>
+
+                    <th>
+                        <div readonly value="@iteam.comment" class="form-control" style="width: 200px; overflow:auto;">
+                            @iteam.comment
+                        </div>
+                    </th> 
+                    
+                    <th>
+                        <div readonly value="@iteam.Course_info" class="form-control" style="width: 200px; overflow:auto;">
+                            @iteam.Course_info
+                        </div>
+                    </th>  
+                    
+                    <th>
+                        <div readonly value="@iteam.Course_name" class="form-control" style="width: 200px; overflow:auto;">
+                            @iteam.Course_name
+                        </div>
+                    </th>
+
+                    <th>
+                        <form action="@Url.Action("GetByid", "Review")"><input type="hidden" name="id" value="@iteam.Id" /><button asp-action="GetByid" asp-controller="Review" type="submit" class="btn btn-outline-success my-3">Edit</button></form>
+                        <form action="@Url.Action("DeleteReview", "Review")"><input type="hidden" name="id" value="@iteam.Id" /> <button class="btn btn-outline-danger" asp-action="DeleteReview" asp-controller="Review">Delete Review</button></form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

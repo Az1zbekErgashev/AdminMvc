@@ -1,0 +1,24 @@
+﻿@model mvcproject.Enitiy.Tests
+
+<head>
+
+</head>
+
+<div style="width: 600px; height:fit-content; margin:auto; background: #0c1e35 ; box-shadow: 0 0 5px black; border-radius: 20px; padding: 100px;">
+    <form asp-action="UpdateTest" asp-controller="Test">
+        <input name="id" value="@Model.Id" type="hidden" />
+        <input name="Queshioquestion" value="@Model.Queshioquestion" class="form-control my-3" placeholder="Questions" />
+        <input class="form-control my-3" name="correct" value="@Model.correct" placeholder="Description" />
+        <input class="form-control my-3" name="incorrect" value="@Model.incorrect[0]" placeholder="incorrect" />
+        <input class="form-control my-3" name="incorrect" value="@Model.incorrect[1]" placeholder="incorrect" />
+        <input class="form-control my-3" name="incorrect" value="@Model.incorrect[2]" placeholder="incorrect" />
+        <input class="form-control my-3" name="CourseId" placeholder="Course Id" />
+
+        <div class="d-flex justify-content-between align-items-center">
+            <button asp-action="UpdateTest" asp-controller="Test" class="btn btn-outline-warning mt-4">Update Task</button>
+        </div>
+    </form>
+    <form action="@Url.Action("GetTest", "Test")">
+        <button asp-action="GetTest" asp-controller="Test" type="submit" class="btn btn-outline-primary mt-4">Cancel</button>
+    </form>
+</div>

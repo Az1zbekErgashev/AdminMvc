@@ -1,0 +1,56 @@
+﻿@model List<mvcproject.Dto.TeacherDto>
+
+<head>
+
+</head>
+<div class="d-flex justify-content-center position-absolute top-0 align-items-center end-0" style="height: 70px; box-shadow: 0 0 3px grey; left: 300px;">
+    <form action="@Url.Action("AddTeacher", "Teacher")">
+        <button type="button" class="btn btn-primary position-relative z-1" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">Add Teacher</button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content " style="width: 500px;">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Teacher</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input name="url" type="text" class="form-control mt-3" placeholder="Url Teacher" />
+                        <input class="form-control mt-3" name="name" placeholder="Name" />
+                        <input class="form-control mt-3" name="description" placeholder="Description" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button asp-action="AddTeacher" asp-controller="Teacher" type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <div class="row">
+        @foreach (var iteam in Model)
+        {
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="@iteam.Url" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">@iteam.Id @iteam.Name</h5>
+                        <p class="card-text">@iteam.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <form action="@Url.Action("GetById", "Teacher")">
+                                <input type="hidden" value="@iteam.Id" name="id" />
+                                <button class="btn btn-outline-success" asp-action="GetById" asp-controller="Teacher">Edit Course</button>
+                            </form>
+                            <form action="@Url.Action("Deleteteacher", "Teacher")">
+                                <input type="hidden" value="@iteam.Id" name="id" />
+                                <button class="btn btn-outline-danger" asp-action="Deleteteacher" asp-controller="Teacher">Delete Course</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

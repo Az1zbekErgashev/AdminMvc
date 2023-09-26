@@ -1,0 +1,89 @@
+﻿@model List<mvcproject.Dto.TaskDto>
+
+
+<head>
+    <style>
+        .table {
+            border;
+            1px solid #0c1e35;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<div>
+
+    <table class="table" style="overflow: scroll;">
+        <thead>
+            <tr>
+                <td style="width: 100px">Id</td>
+                <td style="width: 100px">Date</td>
+                <td style="width: 300px">Title</td>
+                <td style="width: 300px">Description</td>
+                <td style="width: 300px">Completion</td>
+                <td style="width: 300px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
+
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="@Url.Action("AddTask", "Task")">
+                                <div class="modal-content " style="width: 500px;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input name="Data" type="date" class="form-control w-100 my-3" required placeholder="Data" />
+                                        <input name="Description" class="form-control w-100 my-3" required placeholder="Description" />
+                                        <input name="Title" class="form-control w-100 my-3" required placeholder="Title" />
+                                        <select class="form-control w-100" name="complete">
+                                            <option  name="complete">False</option>
+                                            <option name="complete">True</option>
+                                        </select>
+                                        <input type="number" name="lessonsId" class="form-control w-100 my-3" required placeholder="Lesson Id" />
+                                    </div> 
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button asp-action="AddTask" asp-controller="Task" type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var iteam in Model)
+            {
+                <tr>
+                    <th><input style="width: 60px !;" readonly value="@iteam.Id" class="form-control w-100" /></th>
+                    <th><input readonly style="width: 108px;" value="@iteam.Data" class="form-control" /></th>
+                    <th>
+                        <div style="width: 200px; overflow:auto;" readonly value="@iteam.Title" class="form-control">
+                            @iteam.Title
+                        </div>
+                    </th>
+                    <th><div readonly value="@iteam.Description" class="form-control" style="width: 200px; overflow:auto;">
+                        @iteam.Description
+                    </div>
+                    
+                        </th>
+                    
+                    <th>
+                        <div readonly value="@iteam.complete" class="form-control w-100">
+                            @iteam.complete
+                        </div>
+                    </th>
+                    <th>
+                        <form action="@Url.Action("GetByid", "Task")"><input type="hidden" name="id" value="@iteam.Id" /><button asp-action="GetByid" asp-controller="Task" type="submit" class="btn btn-outline-success my-3">Edit</button></form>
+                        <form action="@Url.Action("DeleteTask", "Task")"><input type="hidden" name="id" value="@iteam.Id" /> <button class="btn btn-outline-danger" asp-action="DeleteTask" asp-controller="Task">Delete User</button></form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

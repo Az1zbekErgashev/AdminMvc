@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - mvcproject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/mvcproject.styles.css" asp-append-version="true" />
+</head>
+<body>
+<div class="d-flex">
+    <div>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                <link rel="stylesheet" href="./dfsdfd.css">
+
+            </head>
+            <body>
+                <div class="layout" style="width: 300px; height: 600px;">
+                    <aside id="sidebar" class="sidebar break-point-sm has-bg-image" style="height: 100vh;">
+                        <a id="btn-collapse" class="sidebar-collapser"><i class="ri-arrow-left-s-line"></i></a>
+                        <div class="image-wrapper">
+                            <img src="assets/images/sidebar-bg.jpg" alt="sidebar background" />
+                        </div>
+                        <div class="sidebar-layout">
+                            <div class="sidebar-header">
+                                <div class="pro-sidebar-logo " style="width: 70px !important;">
+                                    <div>MVC</div>
+                                    <h5>Admin </h5>
+                                </div>
+                            </div>
+                            <div class="sidebar-content">
+                                <nav class="menu open-current-submenu">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetUsers","User")">
+                                            <a asp-action="GetUsers" asp-controller="User">
+                                                <span class="menu-icon">
+                                                    <i class="ri-book-2-fill"></i>
+                                                </span>
+                                                <span class="menu-title">User</span>
+                                            </a>
+                                            </form>
+                                        </li>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetCourse", "Course")">
+                                            <a asp-controller="Course" asp-action="GetCourse">
+                                                <span class="menu-icon">
+                                                    <i class="ri-book-2-fill"></i>
+                                                </span>
+                                                <span class="menu-title">Course</span>
+                                            </a>
+                                            </form>
+                                        </li>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetEducation", "Education")">
+                                                <a asp-action="GetEducation" asp-controller="Education">
+                                                    <span class="menu-icon">
+                                                        <i class="ri-book-2-fill"></i>
+                                                    </span>
+                                                    <span class="menu-title">Education</span>
+                                                </a>
+                                            </form>
+                                
+                                        </li>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("DeleeteLesson", "Lesson")">
+                                                <a asp-action="GetLesson" asp-controller="Lesson">
+                                                    <span class="menu-icon">
+                                                        <i class="ri-book-2-fill"></i>
+                                                    </span>
+                                                    <span class="menu-title">Lesson</span>
+                                                </a>
+                                            </form>
+                                        </li>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetTask","Task")">
+                                                <a asp-action="GetTask" asp-controller="Task">
+                                                    <span class="menu-icon">
+                                                        <i class="ri-book-2-fill"></i>
+                                                    </span>
+                                                    <span class="menu-title">Task</span>
+                                                </a>
+                                            </form>
+                              
+                                        </li>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetHomeWork", "HomeWork")">
+                                                <a asp-action="GetHomeWork" asp-controller="HomeWork">
+                                                    <span class="menu-icon">
+                                                        <i class="ri-book-2-fill"></i>
+                                                    </span>
+                                                    <span class="menu-title">Home Work</span>
+
+                                                </a>
+                                            </form>
+                                     
+                                        </li>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetResult", "Result")">
+                                                <a asp-controller="Result" asp-action="GetResult">
+                                                    <span class="menu-icon">
+                                                        <i class="ri-calendar-fill"></i>
+                                                    </span>
+                                                    <span class="menu-title">Result</span>
+                                                </a>
+                                            </form>
+                                        </li>    
+                                        
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("Deletefeedback","FeedBack")">
+                                                <a asp-controller="FeedBack" asp-action="GetFeedback">
+                                                    <span class="menu-icon">
+                                                        <i class="ri-calendar-fill"></i>
+                                                    </span>
+                                                    <span class="menu-title">FeedBack</span>
+                                                </a>
+                                            </form>
+                                        </li>
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetReview","Review")">
+                                                <a asp-controller="Review" asp-action="GetReview">
+                                                    <span class="menu-icon">
+                                                        <i class="fa-solid fa-house"></i>
+                                                    </span>
+                                                    <span class="menu-title">Review</span>
+                                                </a>
+                                            </form>
+
+                                        </li>   
+                                        
+                                        
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetReacher", "Teacher")">
+                                                <a asp-action="GetReacher" asp-controller="Teacher">
+                                                    <span class="menu-icon">
+                                                        <i class="fa-solid fa-house"></i>
+                                                    </span>
+                                                    <span class="menu-title">Teacher</span>
+                                                </a>
+                                            </form>
+                                        </li>                               
+                                        
+                                        <li class="menu-item">
+                                            <form action="@Url.Action("GetTest", "Test")">
+                                                <a asp-controller="Test" asp-action="GetTest">
+                                                    <span class="menu-icon">
+                                                        <i class="fa-solid fa-house"></i>
+                                                    </span>
+                                                    <span class="menu-title">Test</span>
+                                                </a>
+                                            </form>
+                                       
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                        </div>
+                </aside>
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/4a51ac7252.js" crossorigin="anonymous"></script>
+
+</html>
+    </div>
+        <div role="main" style="padding: 0 0 150px 0; overflow-y:scroll; overflow-x:hidden;  margin: 100px auto ; width: 1100px; height: 700px;">
+            @RenderBody()
+    </div>
+</div>
+<div class="container">
+    <main  class="pb-3">
+    </main>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿@model mvcproject.Enitiy.Result
+
+<head>
+
+</head>
+
+<div style="width: 600px; height:fit-content; margin:auto; background: #0c1e35 ; box-shadow: 0 0 5px black; border-radius: 20px; padding: 100px;">
+    <form asp-action="UpdateResult" asp-controller="Result">
+        <input name="id" value="@Model.ID" type="hidden" />
+        <input name="name" value="@Model.Name" type="text"  placeholder="Name" />
+        <input class="form-control my-3" name="url" value="@Model.Url" placeholder="Image Url" />
+        <input class="form-control my-3" name="UserId" placeholder="User ID" />
+        <input class="form-control my-3" name="EducationId" placeholder="Education Id" />
+
+        <div class="d-flex justify-content-between align-items-center">
+            <button asp-action="UpdateResult" asp-controller="Result" class="btn btn-outline-warning mt-4">Update Task</button>
+        </div>
+    </form>
+    <form action="@Url.Action("GetResult", "Result")">
+        <button asp-action="GetResult" asp-controller="Result" type="submit" class="btn btn-outline-primary mt-4">Cancel</button>
+    </form>
+</div>

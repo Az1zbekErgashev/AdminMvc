@@ -1,0 +1,25 @@
+﻿
+@model mvcproject.Enitiy.Teacher
+
+
+
+<head>
+
+</head>
+
+<div style="width: 600px; height:fit-content; margin:auto; background: #0c1e35 ; box-shadow: 0 0 5px black; border-radius: 20px; padding: 100px;">
+    <form asp-action="UpdateTeacher" asp-controller="Teacher">
+        <input name="id" value="@Model.Id" type="hidden" />
+        <input name="name" value="@Model.Name" type="text" class="form-control mt-3" placeholder="Name" />
+        <input class="form-control mt-3" name="url" value="@Model.Url" placeholder="Url Photo" />
+        <input class="form-control mt-3" name="description" value="@Model.Description" placeholder="Description" />
+        <div class="d-flex justify-content-between align-items-center">
+            <button asp-action="UpdateTeacher" asp-controller="Teacher" class="btn btn-outline-warning mt-4">Update Teacher</button>
+        </div>
+    </form>
+    <form action="@Url.Action("GetReacher", "Teacher")">
+        <button asp-action="GetReacher" asp-controller="Teacher" type="submit" class="btn btn-outline-primary mt-4">Cancel</button>
+    </form>
+</div>
+
+

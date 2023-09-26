@@ -1,0 +1,58 @@
+﻿@model List<mvcproject.Dto.CourseDto>
+
+<head>
+
+</head>
+<div class="d-flex justify-content-center position-absolute top-0 align-items-center end-0" style="height: 70px; box-shadow: 0 0 3px grey; left: 300px;">
+    <form action="@Url.Action("AddCourse", "Course")">
+        <button type="button" class="btn btn-primary position-relative z-1" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">Add Course</button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content " style="width: 500px;">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Course</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input name="name" type="text" class="form-control mt-3" placeholder="Name Course"/>
+                        <input class="form-control mt-3" name="url" placeholder="Url Photo"/>
+                        <input class="form-control mt-3" name="description" placeholder="Description"/>
+                        <input class="form-control mt-3" name="price" type="number" placeholder="Price"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button asp-action="AddCourse" asp-controller="Course" type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <div class="row">
+        @foreach (var iteam in Model)
+        {
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="@iteam.Url" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">@iteam.Id @iteam.Name</h5>
+                        <p class="card-text">@iteam.Description</p>
+                        <p class="card-text fw-bold">Price : @iteam.Price $</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <form action="@Url.Action("GetById", "Course")">
+                                <input type="hidden" value="@iteam.Id" name="id"/>
+                                <button class="btn btn-outline-success" asp-action="GetById" asp-controller="Course">Edit Course</button>
+                            </form>
+                            <form action="@Url.Action("DeleteCourse", "Course")">
+                                <input type="hidden" value="@iteam.Id" name="id" />
+                                <button class="btn btn-outline-danger" asp-action="DeleteCourse" asp-controller="Course">Delete Course</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

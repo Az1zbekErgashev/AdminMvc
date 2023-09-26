@@ -1,0 +1,89 @@
+﻿@model List<mvcproject.Dto.UserDto>
+
+
+<head>
+    <style>
+        .table{
+            border;
+            1px solid #0c1e35;
+         
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<div>
+    <div class="d-flex justify-content-center position-absolute top-0 align-items-center end-0" style="height: 100px; box-shadow: 0 0 3px grey; left: 300px;">
+        <div class="w-25">
+            <form action="@Url.Action("UserCourse", "User")">
+                <button style="margin-top: 22px;" asp-action="UserCourse" asp-controller="User" class="btn btn-outline-primary">User Course</button>
+                <input name="id" class="form-control w-25 my-3" type="number" /> 
+            </form>
+        </div>
+        <div class="w-25">
+            <form action="@Url.Action("UserFeedback", "User")">
+                <button style="margin-top: 22px;" asp-action="UserFeedback" asp-controller="User" class="btn btn-outline-primary">User Feedback</button>
+                <input name="id" class="form-control w-25 my-3" type="number" />
+
+            </form>
+        </div>
+        <div class="w-25">
+            <form action="@Url.Action("UserResult", "User")">
+                <button style="margin-top: 22px;" asp-action="UserResult" asp-controller="User" class="btn btn-outline-primary">User Result</button>
+                <input name="id" class="form-control w-25 my-3" type="number" />
+
+            </form>
+        </div>
+    </div>
+
+    <table class="table" style="overflow: scroll;">
+        <thead>
+        <tr>
+            <td style="width: 50px">Id</td>
+            <td style="width: 300px">Name</td>
+            <td style="width: 300px">Email</td>
+            <td style="width: 300px">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add User
+                </button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form action="@Url.Action("AddUser", "User")">
+                            <div class="modal-content " style="width: 500px;">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <input name="fullname" class="form-control w-100 my-3" required placeholder="User Name"/>
+                                    <input name="email" class="form-control w-100 my-3" required placeholder="Email"/>
+                                    <input name="password" class="form-control w-100 my-3" required placeholder="Password"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button asp-action="AddUser" asp-controller="User" type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </thead>
+        @foreach (var iteam in Model)
+        {
+            <tr >
+                <th><input readonly value="@iteam.Id" class="form-control w-100"/></th>
+                <th><input readonly value="@iteam.FullName" class="form-control w-100"/></th>
+                <th><input readonly value="@iteam.Email" class="form-control w-100"/></th>
+                <th>
+                    <form action="@Url.Action("GetById", "User")"><input type="hidden" name="id" value="@iteam.Id"/><button asp-action="GetById" asp-controller="User" type="submit" class="btn btn-outline-success my-3">Edit</button></form>
+                    <form action="@Url.Action("DeleteUser", "User")"><input type="hidden" name="id" value="@iteam.Id"/> <button class="btn btn-outline-danger" asp-action="DeleteUser" asp-controller="User">Delete User</button></form>
+                </th>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

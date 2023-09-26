@@ -1,0 +1,21 @@
+﻿@model mvcproject.Enitiy.HomeWork
+
+<head>
+
+</head>
+
+<div style="width: 600px; height:fit-content; margin:auto; background: #0c1e35 ; box-shadow: 0 0 5px black; border-radius: 20px; padding: 100px;">
+    <form asp-action="UpdateTask" asp-controller="Task">
+        <input name="id" value="@Model.Id" type="hidden" />
+        <input name="name" value="@Model.Name" type="text" class="form-control my-3" placeholder="Name" />
+        <input class="form-control my-3" name="title" value="@Model.Title" placeholder="Title" />
+        <input class="form-control my-3" name="img" value="@Model.Img" placeholder="Image" />
+        <input class="form-control my-3" name="TaskId" placeholder="Task Id" />
+        <div class="d-flex justify-content-between align-items-center">
+            <button asp-action="UpdateHomeWork" asp-controller="HomeWork" class="btn btn-outline-warning mt-4">Update Home Work</button>
+        </div>
+    </form>
+    <form action="@Url.Action("GetTask", "Task")">
+        <button asp-action="GetHomeWork" asp-controller="HomeWork" type="submit" class="btn btn-outline-primary mt-4">Cancel</button>
+    </form>
+</div>

@@ -1,0 +1,82 @@
+﻿@model List<mvcproject.Dto.EducationDto>
+
+
+<head>
+    <style>
+        .table {
+            border;
+            1px solid #0c1e35;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<div>
+
+    <table class="table" style="overflow: scroll;">
+        <thead>
+            <tr>
+                <td style="width: 100px">Id</td>
+                <td style="width: 300px">Title</td>
+                <td style="width: 300px">Description</td>
+                <td style="width: 300px">Completion</td>
+                <td style="width: 300px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Education</h1>
+
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="@Url.Action("AddEducation", "Education")">
+                                <div class="modal-content " style="width: 500px;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Education</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input name="Tranding" class="form-control w-100 my-3" required placeholder="Title" />
+                                        <input name="Description" class="form-control w-100 my-3" required placeholder="Description" />
+                                        <input name="courseId" class="form-control w-100 my-3" required placeholder="Course Id" />
+                                        <label for="options">Options:</label>
+                                        <input name="courseСompletion[0]" class="form-control w-100 my-3" required placeholder="Complet Course" />
+                                        <input name="courseСompletion[1]" class="form-control w-100 my-3" required placeholder="Complet Course Options 1" />
+                                        <input name="courseСompletion[2]" class="form-control w-100 my-3" required placeholder="Complet Course Options 2" />
+                                        <input name="courseСompletion[3]" class="form-control w-100 my-3" required placeholder="Complet Course Options 3" />
+                                        <input name="courseСompletion[4]" class="form-control w-100 my-3" required placeholder="Complet Course Options 4" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button asp-action="AddEducation" asp-controller="Education" type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var iteam in Model)
+            {
+                <tr>
+                    <th><input readonly value="@iteam.Id" class="form-control w-100" /></th>
+                    <th><input readonly value="@iteam.Tranding" class="form-control w-100" /></th>
+                    <th><div readonly value="@iteam.Description" class="form-control w-100">
+                            @iteam.Description
+                    </div></th>
+                    <th><div readonly class="form-control">
+                        @foreach (var i in iteam.courseСompletion)
+                        {
+                            <h6>@i</h6> <br/>
+                        }
+                    </div></th>
+                    <th>
+                        <form action="@Url.Action("GetByid", "Education")"><input type="hidden" name="id" value="@iteam.Id" /><button asp-action="GetByid" asp-controller="Education" type="submit" class="btn btn-outline-success my-3">Edit</button></form>
+                        <form action="@Url.Action("DeleteEducation", "Education")"><input type="hidden" name="id" value="@iteam.Id" /> <button class="btn btn-outline-danger" asp-action="DeleteEducation" asp-controller="Education">Delete Education</button></form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

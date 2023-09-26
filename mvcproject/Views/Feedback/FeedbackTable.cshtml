@@ -1,0 +1,82 @@
+﻿@model List<mvcproject.Dto.FeedbackDto>
+
+
+<head>
+    <style>
+        .table {
+            border;
+            1px solid #0c1e35;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<div>
+
+    <table class="table" style="overflow: scroll;">
+        <thead>
+            <tr>
+                <td style="width: 100px">Id</td>
+                <td style="width: 100px">Date</td>
+                <td style="width: 300px">Name</td>
+                <td style="width: 300px">Phone Number</td>
+                <td style="width: 250px">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Feedback</h1>
+
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="@Url.Action("Addfeedback", "FeedBack")">
+                                <div class="modal-content " style="width: 500px;">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add FeedBack</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input name="name" type="text" class="form-control w-100 my-3" required placeholder="Name" />
+                                        <input name="date" type="date" class="form-control w-100 my-3" required placeholder="Date" />
+                                        <input name="Phone_Number" type="text" class="form-control w-100 my-3" required placeholder="Phone Number" />
+                                        <input type="number" name="Course_id" class="form-control w-100 my-3" required placeholder="Course Id" />
+                                        <input type="number" name="User_id" class="form-control w-100 my-3" required placeholder="User Id" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button asp-action="Addfeedback" asp-controller="FeedBack" type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var iteam in Model)
+            {
+                <tr>
+                    <th><input style="width: 60px !;" readonly value="@iteam.Id" class="form-control w-100" /></th>
+                    <th><input readonly style="width: 108px;" value="@iteam.Date" class="form-control" /></th>
+
+                    <th>
+                        <div readonly value="@iteam.Name" class="form-control" style="width: 200px; overflow:auto;">
+                            @iteam.Name
+                        </div>
+
+                    </th>
+                    
+                    <th>
+                        <div readonly value="@iteam." class="form-control" style="width: 200px; overflow:auto;">
+                            @iteam.Phone_Number
+                        </div>
+
+                    </th>  
+
+                    <th>
+                        <form action="@Url.Action("Deletefeedback", "FeedBack")"><input type="hidden" name="id" value="@iteam.Id" /> <button class="btn btn-outline-danger" asp-action="Deletefeedback" asp-controller="FeedBack">Delete Feedback</button></form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

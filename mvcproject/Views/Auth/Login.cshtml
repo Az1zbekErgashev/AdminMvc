@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "title";
+    Layout = null;
+}
+
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="~/css/Login.css" />
+</head>
+
+<div class="login-box">
+    <h2>Login</h2>
+    <form method="post" action="@Url.Action("Login", "Auth")">
+        <div class="user-box">
+            <input autocomplete="off" id="name" name="Name" type="text" required>
+            <label>Username</label>
+        </div> 
+        <div class="user-box">
+            <input autocomplete="new-password" name="Email" id="email" type="email" required>
+            <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input value="" autocomplete="new-password" name="Password" id="password" type="password" required>
+            <label>Password</label>
+        </div>
+        <a >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <button asp-action="Login" asp-controller="Auth" style="background:none; border: none; font-weight: 700; color: white;">Submit</button>
+        </a>
+    </form>
+</div>

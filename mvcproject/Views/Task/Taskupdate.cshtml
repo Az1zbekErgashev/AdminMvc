@@ -1,0 +1,26 @@
+﻿@model mvcproject.Enitiy.Task
+
+<head>
+
+</head>
+
+<div style="width: 600px; height:fit-content; margin:auto; background: #0c1e35 ; box-shadow: 0 0 5px black; border-radius: 20px; padding: 100px;">
+    <form asp-action="UpdateTask" asp-controller="Task">
+        <input name="id" value="@Model.Id" type="hidden" />
+        <input name="data" value="@Model.Data" type="date" class="form-control my-3" placeholder="Date"/>
+        <input class="form-control my-3" name="Description" value="@Model.Description" placeholder="Description" />
+        <input class="form-control my-3" name="Title" value="@Model.Title" placeholder="Title" />
+        <input class="form-control my-3"  name="LessonsId" placeholder="Lesson Id" />
+        <select class="form-control w-100 my-3" name="complete" value="@Model.complete">
+            <option name="complete" value="False">False</option>
+            <option name="complete" value="True">True</option>
+        </select>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <button asp-action="UpdateTask" asp-controller="Task" class="btn btn-outline-warning mt-4">Update Task</button>
+        </div>
+    </form>
+    <form action="@Url.Action("GetTask", "Task")">
+        <button asp-action="GetTask" asp-controller="Task" type="submit" class="btn btn-outline-primary mt-4">Cancel</button>
+    </form>
+</div>
